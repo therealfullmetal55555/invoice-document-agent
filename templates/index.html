@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Desk</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #e8e2d5; color: #1a1a18; font-family: -apple-system, sans-serif; }
+.mono { font-family: ui-monospace, monospace; }
+.top { background: #1a1a18; color: #e8e2d5; padding: 12px 20px; display: flex; justify-content: space-between; font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 24px 20px 80px; display: grid; grid-template-columns: 1fr 340px; gap: 24px; }
+.desk { background: #f6f3ec; border: 1px solid #c9c2b0; padding: 20px; min-height: 600px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); position: relative; }
+.desk::before { content: ''; position: absolute; top: 0; left: 40px; bottom: 0; width: 1px; background: #e8a0a0; opacity: 0.5; }
+.paper { background: white; border: 1px solid #d6d2c7; padding: 24px; margin-bottom: 16px; box-shadow: 2px 2px 0 rgba(0,0,0,0.06); position: relative; margin-left: 20px; }
+.paper.low { background: #fffbeb; border-color: #f59e0b; transform: rotate(-0.5deg); }
+.paper h2 { font-family: Georgia, serif; font-size: 20px; font-weight: 400; margin-bottom: 16px; }
+.upload { border: 2px dashed #c9c2b0; padding: 24px; text-align: center; cursor: pointer; background: #fcfbF8; }
+.upload:hover { border-color: #1a1a18; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 12px; }
+th { text-align: left; font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: #8a867e; padding: 8px 6px; border-bottom: 1px solid #1a1a18; }
+td { padding: 10px 6px; border-bottom: 1px solid #e8e2d6; }
+tr.low td { background: #fffbeb; }
+.btn { padding: 6px 10px; border: 1px solid #1a1a18; background: white; font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; }
+.btn:hover { background: #1a1a18; color: #f4f1eb; }
+.btn.primary { background: #1a1a18; color: #f4f1eb; }
+.result { position: sticky; top: 20px; }
+.result-card { background: white; border: 1px solid #1a1a18; padding: 16px; box-shadow: 4px 4px 0 #1a1a18; }
+.result-card h3 { font-family: Georgia, serif; font-size: 18px; font-weight: 400; margin-bottom: 12px; }
+.line { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #f0ece2; font-size: 12px; }
+.line span:first-child { font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase; color: #8a867e; }
+.stamp { display: inline-block; border: 2px solid #1a1a18; padding: 4px 10px; font-family: ui-monospace, monospace; font-size: 11px; font-weight: 700; text-transform: uppercase; transform: rotate(-3deg); margin-bottom: 12px; }
+.stamp.review { border-color: #d97706; color: #d97706; }
+.stamp.ok { border-color: #15803d; color: #15803d; }
+@media (max-width: 900px) { .wrap { grid-template-columns: 1fr; } .result { position: static; } }
+</style>
+</head>
+<body>
+<div class="top"><div>Project 02 / Invoice Agent / Vision + Pydantic</div><div class="mono">8 synthetic • No real data • Per-field accuracy</div></div>
+<div class="wrap">
+  <div class="desk">
+    <div style="font-family:ui-monospace,monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#8a867e; margin-bottom:16px; margin-left:20px;">Inbox — 8 invoices • Click extract to test • 1 low quality for review flag</div>
+    
+    <div class="paper">
+      <h2>Drop invoice here</h2>
+      <div class="upload" onclick="document.getElementById('fileInput').click()">
+        <div style="font-size:14px;">📎 Upload PDF or image</div>
+        <div style="font-size:11px; color:#8a867e; margin-top:6px; font-family:ui-monospace,monospace;">PNG, JPG, PDF • Anti-hallucination: low quality → null + needs review</div>
+        <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.pdf" style="display:none;">
+      </div>
+    </div>
+
+    <div id="demoList"></div>
+  </div>
+
+  <div class="result">
+    <div class="result-card" id="result">
+      <h3>Extraction desk</h3>
+      <div style="font-size:12px; color:#8a867e; line-height:1.5;">Select an invoice from desk to see vision extraction. Low quality invoice should flag for review, not hallucinate total.</div>
+      <div style="margin-top:16px; font-family:ui-monospace,monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.06em; color:#8a867e; border-top:1px dashed #d6d2c7; padding-top:12px;">
+        Features:<br>
+        • Vision + Pydantic structured<br>
+        • Anti-hallucination guardrail<br>
+        • EUR/USD/GBP/RUB • comma/dot<br>
+        • Per-field accuracy measured
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+async function loadDemo(){
+  const resp=await fetch('/api/demo-invoices'); const data=await resp.json();
+  const div=document.getElementById('demoList');
+  div.innerHTML='';
+  data.invoices.forEach(inv=>{
+    const gt=inv.ground_truth;
+    const paper=document.createElement('div'); paper.className='paper'+(inv.is_low_quality?' low':'');
+    paper.innerHTML=`
+      <div style="display:flex; justify-content:space-between; align-items:start;">
+        <div>
+          <div style="font-family:ui-monospace,monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.06em; color:#8a867e;">${inv.id} • ${gt.currency} • ${gt.format||''}</div>
+          <div style="font-size:14px; font-weight:600; margin-top:4px;">${gt.number} — ${gt.vendor}</div>
+          <div style="font-size:12px; color:#6b6b60; margin-top:4px;">${gt.client} • Total: ${gt.total!==null?gt.total+' '+gt.currency:'[UNREADABLE]'} • ${gt.date}</div>
+          ${inv.is_low_quality?'<div style="margin-top:8px; font-size:11px; color:#d97706; font-family:ui-monospace,monospace;">⚠️ LOW QUALITY SCAN — should trigger needs_review, not hallucinate total</div>':''}
+        </div>
+        <button class="btn primary" onclick="testDemo('${inv.id}')">Extract →</button>
+      </div>
+    `;
+    div.appendChild(paper);
+  });
+}
+async function testDemo(id){
+  const resultDiv=document.getElementById('result');
+  resultDiv.innerHTML='<div style="font-family:ui-monospace,monospace; font-size:11px;">Extracting… vision + Pydantic</div>';
+  try{
+    const imgResp=await fetch(`/demo-data/invoices/${id}.png`); const blob=await imgResp.blob();
+    const formData=new FormData(); formData.append('file', blob, `${id}.png`);
+    const resp=await fetch('/api/extract',{method:'POST',body:formData}); const data=await resp.json();
+    if(data.status==='success'){
+      const ext=data.extraction.invoice; const val=data.validation;
+      resultDiv.innerHTML=`
+        <div class="stamp ${val.needs_review?'review':'ok'}">${val.needs_review?'Needs Review':'Extracted'}</div>
+        <h3>${ext.number||'N/A'}</h3>
+        <div class="line"><span>Vendor</span><span>${ext.vendor||'null'}</span></div>
+        <div class="line"><span>Date</span><span>${ext.date||'null'}</span></div>
+        <div class="line"><span>Total</span><span>${ext.total!==null?ext.total+' '+(ext.currency||''):'null (correct for low quality)'}</span></div>
+        <div class="line"><span>Tax</span><span>${ext.tax!==null?ext.tax:'null'}</span></div>
+        <div class="line"><span>Currency</span><span>${ext.currency||'null'}</span></div>
+        <div class="line"><span>Confidence</span><span>${data.extraction.confidence}</span></div>
+        <div class="line"><span>Needs review</span><span>${val.needs_review?'Yes':'No'}</span></div>
+        ${data.extraction.review_reasons.length?`<div style="margin-top:12px; font-size:11px; background:#fffbeb; padding:8px; border:1px solid #fde68a;">${data.extraction.review_reasons.join('; ')}</div>`:''}
+        ${val.missing_fields.length?`<div style="margin-top:8px; font-size:11px; color:#8a867e;">Missing: ${val.missing_fields.join(', ')}</div>`:''}
+      `;
+    } else { resultDiv.innerHTML=`<div style="color:#b91c1c;">Error: ${data.error}</div>`; }
+  } catch(e){ resultDiv.innerHTML=e.message; }
+}
+document.getElementById('fileInput').addEventListener('change', async (e)=>{
+  const file=e.target.files[0]; if(!file) return;
+  const resultDiv=document.getElementById('result');
+  resultDiv.innerHTML=`Uploading ${file.name}…`;
+  const formData=new FormData(); formData.append('file', file);
+  try{
+    const resp=await fetch('/api/extract',{method:'POST',body:formData}); const data=await resp.json();
+    if(data.status==='success'){
+      const ext=data.extraction.invoice;
+      resultDiv.innerHTML=`<div class="stamp ok">Extracted</div><h3>${ext.number}</h3><div class="line"><span>Total</span><span>${ext.total} ${ext.currency}</span></div>`;
+    } else { resultDiv.innerHTML=data.error; }
+  } catch(err){ resultDiv.innerHTML=err.message; }
+});
+loadDemo();
+</script>
+</body>
+</html>

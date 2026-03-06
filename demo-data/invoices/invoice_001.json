@@ -1,0 +1,30 @@
+{
+  "id": "invoice_001",
+  "number": "INV-2024-001",
+  "date": "2024-03-15",
+  "due_date": "2024-04-15",
+  "vendor": "Tech Solutions GmbH",
+  "vendor_address": "Berliner Str. 123, 10115 Berlin, Germany",
+  "client": "Anna Schmidt, Berlin Startup Hub",
+  "currency": "EUR",
+  "subtotal": 2500.0,
+  "tax": 475.0,
+  "total": 2975.0,
+  "payment_terms": "Net 30",
+  "line_items": [
+    {
+      "description": "Website Development - Frontend",
+      "quantity": 1,
+      "unit_price": 1500.0,
+      "amount": 1500.0
+    },
+    {
+      "description": "API Integration",
+      "quantity": 1,
+      "unit_price": 1000.0,
+      "amount": 1000.0
+    }
+  ],
+  "notes": "Thank you for your business!",
+  "format": "EU standard, comma decimal in image but dot in JSON ground truth"
+}

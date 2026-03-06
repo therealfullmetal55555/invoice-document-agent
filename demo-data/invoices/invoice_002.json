@@ -1,0 +1,30 @@
+{
+  "id": "invoice_002",
+  "number": "INV-US-2024-042",
+  "date": "2024-05-20",
+  "due_date": "2024-06-20",
+  "vendor": "Digital Agency NYC Inc.",
+  "vendor_address": "123 Broadway, New York, NY 10001, USA",
+  "client": "David Kim, Marketing Agency NY",
+  "currency": "USD",
+  "subtotal": 5000.0,
+  "tax": 0.0,
+  "total": 5000.0,
+  "payment_terms": "Due on receipt",
+  "line_items": [
+    {
+      "description": "AI Automation Setup",
+      "quantity": 1,
+      "unit_price": 3000.0,
+      "amount": 3000.0
+    },
+    {
+      "description": "WhatsApp Bot Development",
+      "quantity": 1,
+      "unit_price": 2000.0,
+      "amount": 2000.0
+    }
+  ],
+  "notes": "Payment via wire transfer",
+  "format": "US format, dot decimal, $ symbol"
+}

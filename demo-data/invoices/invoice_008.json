@@ -1,0 +1,36 @@
+{
+  "id": "invoice_008",
+  "number": "INV-2024-115",
+  "date": "2024-09-20",
+  "due_date": "2024-10-20",
+  "vendor": "AI Automation Specialists",
+  "vendor_address": "Telliskivi 60, 10412 Tallinn, Estonia",
+  "client": "Sophie Laurent, Salon Paris",
+  "currency": "EUR",
+  "subtotal": 4500.0,
+  "tax": 900.0,
+  "total": 5400.0,
+  "payment_terms": "Net 30",
+  "line_items": [
+    {
+      "description": "CRM Integration + Lead Qualification",
+      "quantity": 1,
+      "unit_price": 2500.0,
+      "amount": 2500.0
+    },
+    {
+      "description": "Eval Harness Setup",
+      "quantity": 1,
+      "unit_price": 1500.0,
+      "amount": 1500.0
+    },
+    {
+      "description": "Documentation & Training",
+      "quantity": 1,
+      "unit_price": 500.0,
+      "amount": 500.0
+    }
+  ],
+  "notes": "Project 5 & 6 from portfolio",
+  "format": "EU, multiple items, references portfolio projects"
+}

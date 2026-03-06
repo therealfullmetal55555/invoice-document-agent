@@ -1,0 +1,24 @@
+{
+  "id": "invoice_005",
+  "number": "INV-2024-102",
+  "date": "2024-08-12",
+  "due_date": "2024-09-12",
+  "vendor": "Wellness Tech Berlin",
+  "vendor_address": "Friedrichstr. 123, 10117 Berlin, Germany",
+  "client": "Linda Müller, Wellness Berlin",
+  "currency": "EUR",
+  "subtotal": 3000.0,
+  "tax": 570.0,
+  "total": 3570.0,
+  "payment_terms": "50% upfront, 50% on delivery",
+  "line_items": [
+    {
+      "description": "WhatsApp Booking Bot",
+      "quantity": 1,
+      "unit_price": 3000.0,
+      "amount": 3000.0
+    }
+  ],
+  "notes": "VAT 19% - German rate",
+  "format": "EU with VAT 19%"
+}

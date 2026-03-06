@@ -1,0 +1,30 @@
+{
+  "id": "invoice_006",
+  "number": "INV-RU-2024-033",
+  "date": "2024-04-05",
+  "due_date": "2024-05-05",
+  "vendor": "ООО Ромашка",
+  "vendor_address": "ул. Тверская 10, Москва, Россия",
+  "client": "ИП Иванов, Магазин на WB",
+  "currency": "RUB",
+  "subtotal": 50000.0,
+  "tax": 10000.0,
+  "total": 60000.0,
+  "payment_terms": "Предоплата 100%",
+  "line_items": [
+    {
+      "description": "Настройка мониторинга цен WB",
+      "quantity": 1,
+      "unit_price": 30000.0,
+      "amount": 30000.0
+    },
+    {
+      "description": "Интеграция с Google Sheets",
+      "quantity": 1,
+      "unit_price": 20000.0,
+      "amount": 20000.0
+    }
+  ],
+  "notes": "НДС 20%",
+  "format": "RUB, Russian vendor"
+}

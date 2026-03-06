@@ -1,0 +1,36 @@
+{
+  "id": "invoice_004",
+  "number": "INV-2024-078",
+  "date": "2024-07-01",
+  "due_date": "2024-07-31",
+  "vendor": "E-commerce Solutions OÜ",
+  "vendor_address": "Narva mnt 5, 10117 Tallinn, Estonia",
+  "client": "Elena Petrova, Ecom Store",
+  "currency": "EUR",
+  "subtotal": 890.0,
+  "tax": 178.0,
+  "total": 1068.0,
+  "payment_terms": "Net 30",
+  "line_items": [
+    {
+      "description": "Wildberries Price Monitor Setup",
+      "quantity": 1,
+      "unit_price": 400.0,
+      "amount": 400.0
+    },
+    {
+      "description": "Monthly Monitoring (3 months)",
+      "quantity": 3,
+      "unit_price": 100.0,
+      "amount": 300.0
+    },
+    {
+      "description": "Telegram Alerts Integration",
+      "quantity": 1,
+      "unit_price": 190.0,
+      "amount": 190.0
+    }
+  ],
+  "notes": "Includes 3 months support",
+  "format": "Multiple line items, EU"
+}
