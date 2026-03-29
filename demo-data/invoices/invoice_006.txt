@@ -1,0 +1,10 @@
+INVOICE
+Number: INV-RU-2024-033
+Date: 2024-04-05
+Vendor: ООО Ромашка
+Client: ИП Иванов, Магазин на WB
+Currency: RUB
+Total: 60000.0
+Tax: 10000.0
+Item: Настройка мониторинга цен WB Qty:1 Price:30000.0 Amount:30000.0
+Item: Интеграция с Google Sheets Qty:1 Price:20000.0 Amount:20000.0

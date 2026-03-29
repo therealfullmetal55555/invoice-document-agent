@@ -1,0 +1,11 @@
+INVOICE
+Number: INV-2024-115
+Date: 2024-09-20
+Vendor: AI Automation Specialists
+Client: Sophie Laurent, Salon Paris
+Currency: EUR
+Total: 5400.0
+Tax: 900.0
+Item: CRM Integration + Lead Qualification Qty:1 Price:2500.0 Amount:2500.0
+Item: Eval Harness Setup Qty:1 Price:1500.0 Amount:1500.0
+Item: Documentation & Training Qty:1 Price:500.0 Amount:500.0

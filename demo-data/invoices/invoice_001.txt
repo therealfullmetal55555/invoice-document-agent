@@ -1,0 +1,10 @@
+INVOICE
+Number: INV-2024-001
+Date: 2024-03-15
+Vendor: Tech Solutions GmbH
+Client: Anna Schmidt, Berlin Startup Hub
+Currency: EUR
+Total: 2975.0
+Tax: 475.0
+Item: Website Development - Frontend Qty:1 Price:1500.0 Amount:1500.0
+Item: API Integration Qty:1 Price:1000.0 Amount:1000.0

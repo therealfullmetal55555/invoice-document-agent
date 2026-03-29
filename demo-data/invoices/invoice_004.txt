@@ -1,0 +1,11 @@
+INVOICE
+Number: INV-2024-078
+Date: 2024-07-01
+Vendor: E-commerce Solutions OÜ
+Client: Elena Petrova, Ecom Store
+Currency: EUR
+Total: 1068.0
+Tax: 178.0
+Item: Wildberries Price Monitor Setup Qty:1 Price:400.0 Amount:400.0
+Item: Monthly Monitoring (3 months) Qty:3 Price:100.0 Amount:300.0
+Item: Telegram Alerts Integration Qty:1 Price:190.0 Amount:190.0

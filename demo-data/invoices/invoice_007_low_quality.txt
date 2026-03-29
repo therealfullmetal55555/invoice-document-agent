@@ -1,0 +1,9 @@
+INVOICE
+Number: INV-2024-099
+Date: 2024-09-01
+Vendor: Blurry Scans Ltd
+Client: Test Client
+Currency: EUR
+Total: None
+Tax: None
+Item: Consulting Services - unreadable Qty:1 Price:0 Amount:0

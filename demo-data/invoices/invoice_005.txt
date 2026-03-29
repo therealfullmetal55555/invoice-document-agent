@@ -1,0 +1,9 @@
+INVOICE
+Number: INV-2024-102
+Date: 2024-08-12
+Vendor: Wellness Tech Berlin
+Client: Linda Müller, Wellness Berlin
+Currency: EUR
+Total: 3570.0
+Tax: 570.0
+Item: WhatsApp Booking Bot Qty:1 Price:3000.0 Amount:3000.0

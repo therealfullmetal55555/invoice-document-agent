@@ -1,0 +1,10 @@
+INVOICE
+Number: INV-US-2024-042
+Date: 2024-05-20
+Vendor: Digital Agency NYC Inc.
+Client: David Kim, Marketing Agency NY
+Currency: USD
+Total: 5000.0
+Tax: 0.0
+Item: AI Automation Setup Qty:1 Price:3000.0 Amount:3000.0
+Item: WhatsApp Bot Development Qty:1 Price:2000.0 Amount:2000.0

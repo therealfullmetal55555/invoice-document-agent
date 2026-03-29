@@ -1,0 +1,10 @@
+INVOICE
+Number: INV-UK-2024-015
+Date: 2024-02-10
+Vendor: London Creative Studio Ltd
+Client: Mark Johnson, Dental Clinic UK
+Currency: GBP
+Total: 1440.0
+Tax: 240.0
+Item: Logo Design Qty:1 Price:500.0 Amount:500.0
+Item: Brand Guidelines Qty:1 Price:700.0 Amount:700.0
